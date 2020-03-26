@@ -10,3 +10,9 @@ class LoginCredentials extends LoginEvent {
 
   LoginCredentials({@required this.account,@required this.password});
 }
+
+class Method1 extends LoginEvent{
+  final String param1;
+
+  Method1({@required this.param1});
+}
