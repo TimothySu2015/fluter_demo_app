@@ -7,6 +7,10 @@ abstract class LoginState {
 class InitialLoginState extends LoginState {
 }
 
-class SuccessLoginState extends LoginState {}
+// ignore: must_be_immutable
+class SuccessLoginState extends LoginState {
+  DateTime time;
+  SuccessLoginState(this.time);
+}
 
 class FailureLoginState extends LoginState {}

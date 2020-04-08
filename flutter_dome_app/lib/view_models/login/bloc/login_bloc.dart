@@ -21,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         var result =
             await callLogin(account: event.account, password: event.password);
         print(result.accessToken);
-        yield SuccessLoginState();
+        yield SuccessLoginState(DateTime.now());
       } catch (_) {
         yield FailureLoginState();
       }
