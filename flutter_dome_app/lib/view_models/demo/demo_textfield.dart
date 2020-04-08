@@ -7,26 +7,36 @@ class DemoTextField extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _demoTextFidldState();
+    return _DemoTextFieldState();
   }
 }
 
-class _demoTextFidldState extends State<DemoTextField> {
+class _DemoTextFieldState extends State<DemoTextField> {
   String _val = '';
-  var _editController = TextEditingController();
+  final _editController = TextEditingController();
+
+  _update() {
+    setState(() {
+      _val = _editController.text;
+    });
+    print(_editController.text);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _editController.addListener(_update);
+  }
+
   @override
   void setState(fn) {
     // TODO: implement setState
     super.setState(fn);
-    _editController.addListener((){
-      _val=_editController.text;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-
-
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
