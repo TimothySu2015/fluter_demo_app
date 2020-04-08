@@ -57,6 +57,14 @@ class _HomePageState extends State<HomePage> {
       ),
       ListTile(
         title: Text('ListViewBuild'),
+      ),
+      ListTile(
+        title: Text('TextField Demo'),
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>DemoTextField()));
+          print('TextField Demo');
+        },
+
       )
     ];
     // TODO: implement build
