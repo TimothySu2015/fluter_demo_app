@@ -8,9 +8,6 @@ class InitialLoginState extends LoginState {
 }
 
 // ignore: must_be_immutable
-class SuccessLoginState extends LoginState {
-  DateTime time;
-  SuccessLoginState(this.time);
-}
+class SuccessLoginState extends LoginState {}
 
 class FailureLoginState extends LoginState {}

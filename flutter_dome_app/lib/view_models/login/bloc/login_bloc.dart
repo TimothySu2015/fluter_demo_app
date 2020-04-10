@@ -21,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         var result =
             await callLogin(account: event.account, password: event.password);
         print(result.accessToken);
-        yield SuccessLoginState(DateTime.now());
+        yield SuccessLoginState();
       } catch (_) {
         yield FailureLoginState();
       }
@@ -39,7 +39,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final param =
         LoginParam(storeAccount: account, storePassword: password).toJson();
 
-    final req = await http.post('http://*****/api/Account/Login',
+    final req = await http.post('https://******/api/Account/Login',
         headers: headers, body: json.encode(param));
     if (req.statusCode == 200) {
       var result =
