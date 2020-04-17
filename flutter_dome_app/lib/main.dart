@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterdomeapp/view_models/demo/demo_boxdecoration.dart';
 import 'package:flutterdomeapp/view_models/login/bloc/bloc.dart';
-
 
 import 'view_models/login/bloc/bloc.dart';
 import 'view_models/demo/demo.dart';
-
-void main() => runApp(MyApp());
+import 'package:flutter/services.dart';
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays([]);
+  return runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -16,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'abc',),
+      home: HomePage(),
     );
   }
 }
@@ -66,7 +70,31 @@ class _HomePageState extends State<HomePage> {
               MaterialPageRoute(builder: (context) => DemoTextField()));
           print('TextField Demo');
         },
-      )
+      ),
+      ListTile(
+        title: Text('Stack'),
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DemoStack()));
+          print('TextField Demo');
+        },
+      ),
+      ListTile(
+        title: Text('BoxDecoration'),
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DemoBoxDecoration()));
+          print('BoxDecoration Demo');
+        },
+      ),
+      ListTile(
+        title: Text('DemoCanvas'),
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DemoCanvas()));
+          print('DemoCanvas Demo');
+        },
+      ),
     ];
     // TODO: implement build
     return Scaffold(
@@ -121,8 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
             builder: (BuildContext context, LoginState state) {
               print('state change');
 
-              return
-                Center(
+              return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
