@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/physics.dart';
 
 class DemoCanvas extends StatefulWidget {
   @override
@@ -26,7 +25,7 @@ class _DemoCanvasState extends State<DemoCanvas> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-  // this._myVal = 0;
+    // this._myVal = 0;
     print('didChangeDependencies');
   }
 
@@ -46,11 +45,10 @@ class _DemoCanvasState extends State<DemoCanvas> {
       appBar: AppBar(
         title: Text('Canvas Demo'),
       ),
-      body: Center(
-        child: CustomPaint(
-          //    size: dashBoardSize,
-          painter: DemoPainter(),
-        ),
+      backgroundColor: Colors.lime,
+      body: CustomPaint(
+        size: dashBoardSize,
+        painter: DemoPainter(),
       ),
       floatingActionButton: FloatingActionButton(
         child: Text('+'),
@@ -60,7 +58,7 @@ class _DemoCanvasState extends State<DemoCanvas> {
 //          });
 //
           setState(() {
-            this._myVal = 6000;
+            this._myVal = 62000;
           });
 
 //          print('a');
@@ -80,47 +78,81 @@ class _DemoCanvasState extends State<DemoCanvas> {
   }
 }
 
-
-class DemoPainter extends CustomPainter
-{
+class DemoPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
+   double halfWidth = size.width / 2;
+   double halfHeight = size.height / 2;
+   canvas.translate(halfWidth, halfHeight);
+//    canvas.save();
+
+var rect =Rect.fromLTWH(75, 75, 50, 50);
+
+  var gradient = RadialGradient(
+    center: const Alignment(0.7, -0.6), // near the top right
+    radius: 0.2,
+    colors: [
+      const Color(0xFFFFFF00), // yellow sun
+      const Color(0xFF0099FF), // blue sky
+    ],
+    stops: [0.4, 1.0],
+  );
+  // rect is the area we are painting over
+  var paint = Paint()
+    ..shader = gradient.createShader(rect);
+
+
     Paint paintBorder = Paint()
       ..color = Colors.grey
       ..strokeWidth = 5
       ..style = PaintingStyle.fill;
 
+    Paint paintBorder2 = Paint()
+      ..color = Colors.white
+      ..strokeWidth = 5
+      ..style = PaintingStyle.fill;
 
+    canvas.drawColor(Colors.red, BlendMode.lighten);
     canvas.save();
-   // canvas.rotate(0);
+    // canvas.rotate(0);
+    canvas.drawRect(Rect.fromLTWH(10, 10, 190, 190), paintBorder2);
     canvas.drawRect(Rect.fromLTWH(20, 20, 50, 50), paintBorder);
-    canvas.rotate(120);
-    canvas.drawRect(Rect.fromLTWH(70, 70, 50, 50), paintBorder);
+    canvas.rotate(pi*2);
+    canvas.drawRect(rect, paint);
     canvas.restore();
     canvas.drawRect(Rect.fromLTWH(130, 130, 50, 50), paintBorder);
- //   canvas.restore();
-   // canvas.rotate(0.1);
-   // canvas.drawRect(Rect.fromLTWH(11, 11, 50, 50), paintBorder);
-  //  canvas.rotate(0.2);
-  //  canvas.drawRect(Rect.fromLTWH(11, 11, 50, 50), paintBorder);
- //   canvas.rotate(0.3);
- //   canvas.drawRect(Rect.fromLTWH(11, 11, 50, 50), paintBorder);
+     print('------');
+     double r = sqrt(pow(size.width, 2) + pow(size.height, 2));
+     print('r:${r}');
+
+
+
+
+  //canvas.drawRect(rect, paint);
+
+
+
+    //   canvas.restore();
+    // canvas.rotate(0.1);
+    // canvas.drawRect(Rect.fromLTWH(11, 11, 50, 50), paintBorder);
+    //  canvas.rotate(0.2);
+    //  canvas.drawRect(Rect.fromLTWH(11, 11, 50, 50), paintBorder);
+    //   canvas.rotate(0.3);
+    //   canvas.drawRect(Rect.fromLTWH(11, 11, 50, 50), paintBorder);
 //    canvas.restore();
-   // canvas.save();
+    // canvas.save();
     //canvas.restore();
-  //  canvas.drawRect(Rect.fromLTWH(100, 100, 200, 50), paintBorder);
+    //  canvas.drawRect(Rect.fromLTWH(100, 100, 200, 50), paintBorder);
 
-  //  canvas.drawRect(Rect.fromLTWH(100, 100, 50, 200), paintBorder);
-   // canvas.save();
-   // canvas.drawRect(Rect.fromLTWH(100, 100, 200, 50), paintBorder);
-   // canvas.rotate(-20);
+    //  canvas.drawRect(Rect.fromLTWH(100, 100, 50, 200), paintBorder);
+    // canvas.save();
+    // canvas.drawRect(Rect.fromLTWH(100, 100, 200, 50), paintBorder);
+    // canvas.rotate(-20);
 
-   // canvas.save();
-   // canvas.restore();
+    // canvas.save();
+    // canvas.restore();
 
-   // canvas.save();
-
-
+    // canvas.save();
   }
 
   @override
@@ -128,7 +160,6 @@ class DemoPainter extends CustomPainter
     // TODO: implement shouldRepaint
     return false;
   }
-
 }
 
 class Arc2Painter extends CustomPainter {

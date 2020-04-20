@@ -1,4 +1,4 @@
-package com.example.flutterdomeapp
+package com.example.flutter_dome_app
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
