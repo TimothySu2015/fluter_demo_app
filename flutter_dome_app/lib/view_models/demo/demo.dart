@@ -6,3 +6,5 @@ export 'demo_textfield.dart';
 export 'demo_stack.dart';
 export 'demo_boxdecoration.dart';
 export 'demo_canvas.dart';
+export 'demo_map.dart';
+export 'demo_login.dart';

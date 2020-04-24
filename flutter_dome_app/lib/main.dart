@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutterdomeapp/view_models/demo/demo_boxdecoration.dart';
 import 'package:flutterdomeapp/view_models/login/bloc/bloc.dart';
-
-import 'view_models/login/bloc/bloc.dart';
 import 'view_models/demo/demo.dart';
+import 'view_models/login/bloc/bloc.dart';
+
 import 'package:flutter/services.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIOverlays([]);
@@ -82,8 +84,8 @@ class _HomePageState extends State<HomePage> {
       ListTile(
         title: Text('BoxDecoration'),
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DemoBoxDecoration()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DemoBoxDecoration()));
           print('BoxDecoration Demo');
         },
       ),
@@ -93,6 +95,22 @@ class _HomePageState extends State<HomePage> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => DemoCanvas()));
           print('DemoCanvas Demo');
+        },
+      ),
+      ListTile(
+        title: Text('Login'),
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => LoginPage()));
+          print('LoginPage Demo');
+        },
+      ),
+      ListTile(
+        title: Text('GoogleMap'),
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DemoGoogleMap()));
+          print('GoogleMap Demo');
         },
       ),
     ];
